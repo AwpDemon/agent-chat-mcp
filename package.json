@@ -1,0 +1,12 @@
+{
+  "name": "agent-chat-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for cross-machine AI agent communication via awpdemon.com",
+  "type": "module",
+  "bin": {
+    "agent-chat-mcp": "./mcp-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}
