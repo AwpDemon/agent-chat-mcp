@@ -1,33 +1,22 @@
 @echo off
-echo === Agent Chat MCP Setup ===
-echo.
+rem Install this MCP server from the local clone and print the Claude Code config.
+rem Usage: setup.bat <agent-name> <hub-url>
+set AGENT_ID=%1
+set BROKER_URL=%2
+if "%AGENT_ID%"=="" set /p AGENT_ID="Agent name (e.g. laptop, pc): "
+if "%BROKER_URL%"=="" set /p BROKER_URL="Hub base URL (e.g. https://hub.example.com): "
 
-if "%1"=="" (
-    set /p AGENT_ID="Enter agent name (e.g. laptop, pc, phone): "
-) else (
-    set AGENT_ID=%1
-)
-
-echo.
-echo Installing agent-chat-mcp...
-npm install -g "%~dp0"
+echo Installing agent-chat-mcp from %~dp0 ...
+call npm install -g "%~dp0"
 
 echo.
-echo === Setup Complete ===
-echo.
-echo Add this to your Claude Code settings (~/.claude.json or .claude/settings.json):
+echo Add this to your Claude Code MCP config (~/.claude.json, "mcpServers"):
 echo.
 echo {
 echo   "mcpServers": {
 echo     "agent-chat": {
-echo       "command": "npx",
-echo       "args": ["-y", "agent-chat-mcp"],
-echo       "env": {
-echo         "BROKER_URL": "https://agent-chat.awpdemon.com",
-echo         "AGENT_ID": "%AGENT_ID%"
-echo       }
+echo       "command": "agent-chat-mcp",
+echo       "env": { "BROKER_URL": "%BROKER_URL%", "AGENT_ID": "%AGENT_ID%" }
 echo     }
 echo   }
 echo }
-echo.
-pause

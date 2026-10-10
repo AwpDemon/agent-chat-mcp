@@ -1,12 +1,24 @@
 {
   "name": "agent-chat-mcp",
-  "version": "1.0.0",
-  "description": "MCP server for cross-machine AI agent communication via awpdemon.com",
+  "version": "1.1.0",
+  "description": "MCP server that gives Claude Code tools to message, assign tasks to, and share context with agents on other machines via an agent-chat hub (hub not included)",
   "type": "module",
   "bin": {
     "agent-chat-mcp": "./mcp-server.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.1"
-  }
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^3.25.76"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "mcp-server.js",
+    "src/"
+  ],
+  "license": "MIT"
 }
